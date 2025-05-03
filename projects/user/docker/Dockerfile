@@ -22,6 +22,4 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader \
 
 EXPOSE 8000
 
-# FIX: Connection refused Is the server running on that host and accepting TCP/IP connections? 
-CMD ["sh", "-c", "php artisan serve --host=0.0.0.0 --port=8000 & \
-                  php artisan migrate --no-interaction"]
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
