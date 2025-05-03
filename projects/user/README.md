@@ -16,4 +16,4 @@ docker compose up -d
 
 ## Инструкция по настройке для локального запуска
 
-Скопировать .env с .env.example в каждом проекте **(ДАННЫЕ ИЗ DOCKER COMPOSE УЖЕ ВБИТЫ В .env.example)**
+Скопировать .env с .env.example **(ДАННЫЕ ИЗ DOCKER COMPOSE УЖЕ ВБИТЫ В .env.example)**
