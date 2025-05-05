@@ -75,6 +75,8 @@ services:
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - ./data/bugservicepgdata:/var/lib/postgresql/data/pgdata
+    ports:
+      - "5434:5432"
     deploy:
       resources:
         limits:
