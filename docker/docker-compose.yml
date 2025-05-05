@@ -52,7 +52,7 @@ services:
       - user-service-network
   bug-service:
     build:
-      context: ..
+      context: ../projects/bug
       dockerfile: ./docker/Dockerfile
     container_name: bug-service
     ports:
