@@ -14,7 +14,7 @@ class ProjectService
 
     public function listByUser(int $userId)
     {
-        return Project::where('user_id', $userId)->get();
+        return Project::where('author_id', $userId)->get();
     }
 
     public function get(int $id): ?Project

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\ProjectService;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ProjectController extends Controller
 {
@@ -11,7 +12,8 @@ class ProjectController extends Controller
 
     public function index(Request $request)
     {
-        return response()->json($this->service->listByUser(auth()->id()));
+        $user_id = JWTAuth::parseToken()->getPayload()->get('sub');
+        return response()->json($this->service->listByUser($user_id));
     }
 
     public function store(Request $request)
@@ -20,7 +22,7 @@ class ProjectController extends Controller
             'title'       => 'required|string',
             'description' => 'nullable|string',
         ]);
-        $data['user_id'] = auth()->id();
+        $data['author_id'] = (int) $request->attributes->get('user_id');
 
         return response()->json($this->service->create($data), 201);
     }

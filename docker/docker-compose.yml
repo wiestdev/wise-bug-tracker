@@ -10,7 +10,7 @@ services:
       user-service-postgres:
         condition: service_healthy
     networks:
-      - user-service-network
+      - backend
     command: >
       sh -c "php artisan migrate --no-interaction && \
             php artisan serve --host=0.0.0.0 --port=8000"
@@ -51,7 +51,7 @@ services:
     tty: true
     stdin_open: true
     networks:
-      - user-service-network
+      - backend
   bug-service:
     build:
       context: ../projects/bug
@@ -63,7 +63,7 @@ services:
       bug-service-postgres:
         condition: service_healthy
     networks:
-      - bug-service-network
+      - backend
     command: >
       sh -c "php artisan migrate --no-interaction && \
             php artisan serve --host=0.0.0.0 --port=8000"
@@ -104,11 +104,12 @@ services:
     tty: true
     stdin_open: true
     networks:
-      - bug-service-network
+      - backend
 
 networks:
   user-service-network:
   bug-service-network:
+  backend:
 
 volumes:
   pgdata:

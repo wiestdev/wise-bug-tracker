@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use App\Http\Middleware\VerifyTokenMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -12,7 +13,13 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->appendToGroup('verify.token', [
+            VerifyTokenMiddleware::class
+        ]);
+
+        $middleware->prependToGroup("verify.token", [
+            VerifyTokenMiddleware::class
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
